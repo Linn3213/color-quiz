@@ -414,12 +414,19 @@ const App = () => {
   };
 
   const handleAnswer = (questionId, value) => {
-    setAnswers(prev => ({ ...prev, [questionId]: value }));
+    const newAnswers = { ...answers, [questionId]: value };
+    setAnswers(newAnswers);
     
     if (currentStep < questions.length - 1) {
       setCurrentStep(currentStep + 1);
     } else {
-      setShowEmailCapture(true);
+      // Skip email capture - go directly to result
+      // Use setTimeout to ensure state is updated
+      setTimeout(() => {
+        setShowEmailCapture(false);
+        const finalResult = calculateResult();
+        setResult(finalResult);
+      }, 50);
     }
   };
 
@@ -723,6 +730,7 @@ const App = () => {
               hårfärg och accessoarer för en komplett transformation?
             </p>
             <button
+              onClick={() => window.open(`https://links.hereis.se/widget/form/iLNru7dljffQZIsUAqxp?color_season=${encodeURIComponent(result.id)}`, '_blank')}
               style={{
                 background: 'linear-gradient(135deg, #d4af37 0%, #b8962e 100%)',
                 border: 'none',
@@ -735,7 +743,7 @@ const App = () => {
                 cursor: 'pointer'
               }}
             >
-              The Personal Glow Up Project
+              Få Din Personliga Färgguide
             </button>
             <p style={{ marginTop: '24px', fontSize: '0.75rem', color: '#666', letterSpacing: '0.1em' }}>
               Din kompletta guide till personlig stil

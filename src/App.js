@@ -729,8 +729,10 @@ const App = () => {
               Nu vet du dina färger. Men hur applicerar du dem på garderob, makeup, 
               hårfärg och accessoarer för en komplett transformation?
             </p>
-            <button
-              onClick={() => window.open(`https://links.hereis.se/widget/form/iLNru7dljffQZIsUAqxp?color_season=${encodeURIComponent(result.id)}`, '_blank')}
+            <a
+              href={`https://links.hereis.se/widget/form/iLNru7dljffQZIsUAqxp?color_season=${result.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 background: 'linear-gradient(135deg, #d4af37 0%, #b8962e 100%)',
                 border: 'none',
@@ -740,11 +742,13 @@ const App = () => {
                 letterSpacing: '0.2em',
                 textTransform: 'uppercase',
                 fontWeight: '600',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                textDecoration: 'none',
+                display: 'inline-block'
               }}
             >
               Få Din Personliga Färgguide
-            </button>
+            </a>
             <p style={{ marginTop: '24px', fontSize: '0.75rem', color: '#666', letterSpacing: '0.1em' }}>
               Din kompletta guide till personlig stil
             </p>
